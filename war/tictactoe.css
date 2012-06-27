@@ -9,3 +9,15 @@ h1 {
 body, td, a, div, .p {
     font-family: arial, sans-serif
 }
+
+.playField {
+    text-align: center;
+    font-size: 70px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: black;
+}
+
+.playFieldCell {
+    cursor: pointer;
+}

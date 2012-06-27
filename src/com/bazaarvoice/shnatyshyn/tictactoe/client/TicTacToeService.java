@@ -9,6 +9,7 @@ public interface TicTacToeService extends RemoteService {
     // Sample interface method of remote interface
     String getMessage(String msg);
 
+    int nextMove(boolean[] xMap, boolean[] oMap, boolean playForX);
     /**
      * Utility/Convenience class.
      * Use TicTacToeService.App.getInstance() to access static instance of tictactoeServiceAsync

@@ -11,10 +11,32 @@ import com.google.gwt.event.dom.client.ClickEvent;
  */
 public class TicTacToe implements EntryPoint {
 
+    Label labels[] = new Label[9];
+
     /**
      * This is the entry point method.
      */
     public void onModuleLoad() {
+        // Create a grid
+        Grid playFieldGrid = new Grid(3, 3);
+        for (int i = 0; i < 9; i++) {
+            final Label label = new Label("O");
+            label.setWidth("100px");
+            playFieldGrid.setWidget(i / 3, i % 3, label);
+            label.addClickHandler(new ClickHandler() {
+                @Override
+                public void onClick(ClickEvent event) {
+                    label.setText(label.getText().equals("O") ? "X" : "O");
+                }
+            });
+            label.setStyleName("playFieldCell");
+            labels[i] = label;
+        }
+        playFieldGrid.setStyleName("playField");
+        playFieldGrid.setSize("300px", "300px");
+        playFieldGrid.setBorderWidth(1);
+        RootPanel.get("playFieldID").add(playFieldGrid);
+
         final Button button = new Button("Click me");
         final Label label = new Label();
 
@@ -33,8 +55,8 @@ public class TicTacToe implements EntryPoint {
         // to hard-code IDs.  Instead, you could, for example, search for all
         // elements with a particular CSS class and replace them with widgets.
         //
-        RootPanel.get("slot1").add(button);
-        RootPanel.get("slot2").add(label);
+        RootPanel.get("buttonXID").add(button);
+        RootPanel.get("buttonOID").add(label);
     }
 
     private static class MyAsyncCallback implements AsyncCallback<String> {
