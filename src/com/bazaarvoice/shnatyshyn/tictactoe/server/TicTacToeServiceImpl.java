@@ -15,8 +15,9 @@ public class TicTacToeServiceImpl extends RemoteServiceServlet implements TicTac
 
     @Override
     public int nextMove(boolean[] xMap, boolean[] oMap, boolean playForX) {
+        // very sophisticated backend logic ))
         for (int i = 0; i < 1000; i++) {
-            int result = random.nextInt() % 9;
+            int result = Math.abs(random.nextInt()) % 9;
             if (!xMap[result] && !oMap[result]) {
                 return result;
             }

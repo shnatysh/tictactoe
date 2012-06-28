@@ -6,27 +6,23 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
 
-/**
- * Entry point classes define <code>onModuleLoad()</code>
- */
+
 public class TicTacToe implements EntryPoint {
+    private static int[][] winningCombinations = {{0, 1, 2}, {3, 4, 5}, {6, 7, 8}, {0, 3, 6}, {1, 4, 7}, {2, 5, 8}, {0, 4, 8}, {2, 4, 6}};
 
     Label labels[] = new Label[9];
+    boolean playerPlayX = true;
 
-    /**
-     * This is the entry point method.
-     */
     public void onModuleLoad() {
-        // Create a grid
         Grid playFieldGrid = new Grid(3, 3);
         for (int i = 0; i < 9; i++) {
-            final Label label = new Label("O");
+            final Label label = new Label("");
             label.setWidth("100px");
             playFieldGrid.setWidget(i / 3, i % 3, label);
             label.addClickHandler(new ClickHandler() {
                 @Override
                 public void onClick(ClickEvent event) {
-                    label.setText(label.getText().equals("O") ? "X" : "O");
+                    userMove(label);
                 }
             });
             label.setStyleName("playFieldCell");
@@ -37,41 +33,131 @@ public class TicTacToe implements EntryPoint {
         playFieldGrid.setBorderWidth(1);
         RootPanel.get("playFieldID").add(playFieldGrid);
 
-        final Button button = new Button("Click me");
-        final Label label = new Label();
+        Button buttonPlayX = new Button("Restart as X");
+        Button buttonPlayO = new Button("Restart as O");
 
-        button.addClickHandler(new ClickHandler() {
+        buttonPlayX.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
-                if (label.getText().equals("")) {
-                    TicTacToeService.App.getInstance().getMessage("Hello, World!", new MyAsyncCallback(label));
-                } else {
-                    label.setText("");
-                }
+                playerPlayX = true;
+                resetField();
             }
         });
 
-        // Assume that the host HTML has elements defined whose
-        // IDs are "slot1", "slot2".  In a real app, you probably would not want
-        // to hard-code IDs.  Instead, you could, for example, search for all
-        // elements with a particular CSS class and replace them with widgets.
-        //
-        RootPanel.get("buttonXID").add(button);
-        RootPanel.get("buttonOID").add(label);
+        buttonPlayO.addClickHandler(new ClickHandler() {
+            public void onClick(ClickEvent event) {
+                playerPlayX = false;
+                resetField();
+            }
+        });
+
+        RootPanel.get("buttonXID").add(buttonPlayX);
+        RootPanel.get("buttonOID").add(buttonPlayO);
     }
 
-    private static class MyAsyncCallback implements AsyncCallback<String> {
-        private Label label;
+    private void userMove(Label label) {
+        if (!label.getText().equals("")) {
+            return;
+        }
+        label.setText(playerPlayX ? "X" : "O");
 
-        public MyAsyncCallback(Label label) {
-            this.label = label;
+        if (!checkForGameEnd()) {
+            serverMove();
+        }
+    }
+
+    private void serverMove() {
+        TicTacToeService.App.getInstance().nextMove(getMask(labels, "X"), getMask(labels, "O"), !playerPlayX, new AsyncCallback<Integer>() {
+            @Override
+            public void onFailure(Throwable caught) {
+                showDialogBox("Error", "Sorry, some error occurred.", new ResetOnClick());
+            }
+
+            @Override
+            public void onSuccess(Integer result) {
+                if (result >= 0) {
+                    labels[result].setText(!playerPlayX ? "X" : "O");
+                }
+                checkForGameEnd();
+            }
+        });
+    }
+
+    private boolean[] getMask(Label[] labels, String value) {
+        boolean[] mask = new boolean[labels.length];
+        for (int i = 0; i < labels.length; i++) {
+            mask[i] = labels[i].getText().equals(value);
+        }
+        return mask;
+    }
+
+    private void resetField() {
+        for (int i = 0; i < 9; i++) {
+            labels[i].setText("");
+        }
+        if (!playerPlayX) {
+            serverMove();
+        }
+    }
+
+    private boolean checkForGameEnd() {
+        for (int[] combination : winningCombinations) {
+            String userChar = playerPlayX ? "X" : "O";
+            String serverChar = !playerPlayX ? "X" : "O";
+            if (labels[combination[0]].getText().equals(userChar) && labels[combination[1]].getText().equals(userChar)
+                    && labels[combination[2]].getText().equals(userChar)) {
+                showDialogBox("Game end.", "You Won!", new ResetOnClick());
+                return true;
+            } else if (labels[combination[0]].getText().equals(serverChar) && labels[combination[1]].getText().equals(serverChar)
+                    && labels[combination[2]].getText().equals(serverChar)) {
+                showDialogBox("Game end.", "You Loose!", new ResetOnClick());
+                return true;
+            }
         }
 
-        public void onSuccess(String result) {
-            label.getElement().setInnerHTML(result);
+        boolean end = true;
+        for (int i = 0; i < 9; i++) {
+            if (labels[i].getText().equals("")) {
+                end = false;
+                break;
+            }
+        }
+        if (end) {
+            showDialogBox("Game end.", "Draw!", new ResetOnClick());
+            return true;
         }
 
-        public void onFailure(Throwable throwable) {
-            label.setText("Failed to receive answer from server!");
+        return false;
+    }
+
+    private void showDialogBox(String caption, String message, final ClickHandler onClose) {
+        final DialogBox dialogBox = new DialogBox();
+        dialogBox.setText(caption);
+
+        VerticalPanel dialogContents = new VerticalPanel();
+        dialogContents.setSpacing(4);
+        dialogBox.setWidget(dialogContents);
+
+        dialogContents.add(new Label(message));
+
+        Button closeButton = new Button("OK", new ClickHandler() {
+            public void onClick(ClickEvent event) {
+                dialogBox.hide();
+                onClose.onClick(event);
+            }
+        });
+        closeButton.setWidth("100px");
+        dialogContents.add(closeButton);
+
+        dialogBox.setGlassEnabled(true);
+        dialogBox.setAnimationEnabled(true);
+        dialogBox.center();
+        dialogBox.show();
+    }
+
+    private class ResetOnClick implements ClickHandler {
+        @Override
+        public void onClick(ClickEvent event) {
+            resetField();
         }
     }
 }
