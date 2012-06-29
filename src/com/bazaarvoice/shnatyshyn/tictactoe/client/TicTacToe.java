@@ -76,8 +76,10 @@ public class TicTacToe implements EntryPoint {
             public void onSuccess(Integer result) {
                 if (result >= 0) {
                     labels[result].setText(!playerPlayX ? "X" : "O");
+                    checkForGameEnd();
+                } else {
+                    onFailure(null);
                 }
-                checkForGameEnd();
             }
         });
     }
