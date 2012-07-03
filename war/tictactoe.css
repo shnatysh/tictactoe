@@ -5,11 +5,11 @@ h1 {
 }
 
 body, td, a, div, .p {
-    font-family: arial, sans-serif
+    font-family: arial, sans-serif;
+    text-align: center;
 }
 
 .playField {
-    text-align: center;
     font-size: 70px;
     border-width: 1px;
     border-style: solid;
@@ -20,8 +20,9 @@ body, td, a, div, .p {
     cursor: pointer;
 }
 
-table {
-    text-align: center;
+.controlButton {
+    margin-left: 15px;
+    margin-right: 15px;
 }
 
 .gwt-DialogBox .Caption {

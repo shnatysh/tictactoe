@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+    <g:HTMLPanel>
+        <div>
+            <g:Grid width="300px" height="300px" borderWidth="1" styleName="playField">
+                <g:row>
+                    <g:customCell>
+                        <g:Label styleName="playFieldCell" width="90px" ui:field="cell0"/>
+                    </g:customCell>
+                    <g:customCell>
+                        <g:Label styleName="playFieldCell" width="90px" ui:field="cell1"/>
+                    </g:customCell>
+                    <g:customCell>
+                        <g:Label styleName="playFieldCell" width="90px" ui:field="cell2"/>
+                    </g:customCell>
+                </g:row>
+                <g:row>
+                    <g:customCell>
+                        <g:Label styleName="playFieldCell" width="90px" ui:field="cell3"/>
+                    </g:customCell>
+                    <g:customCell>
+                        <g:Label styleName="playFieldCell" width="90px" ui:field="cell4"/>
+                    </g:customCell>
+                    <g:customCell>
+                        <g:Label styleName="playFieldCell" width="90px" ui:field="cell5"/>
+                    </g:customCell>
+                </g:row>
+                <g:row>
+                    <g:customCell>
+                        <g:Label styleName="playFieldCell" width="90px" ui:field="cell6"/>
+                    </g:customCell>
+                    <g:customCell>
+                        <g:Label styleName="playFieldCell" width="90px" ui:field="cell7"/>
+                    </g:customCell>
+                    <g:customCell>
+                        <g:Label styleName="playFieldCell" width="90px" ui:field="cell8"/>
+                    </g:customCell>
+                </g:row>
+            </g:Grid>
+        </div>
+        <div>
+            <span class="controlButton">
+                <g:Button ui:field="buttonPlayX" text="Restart as X"/>
+            </span>
+            <span class="controlButton">
+                <g:Button ui:field="buttonPlayO" text="Restart as O"/>
+            </span>
+        </div>
+    </g:HTMLPanel>
+</ui:UiBinder>
