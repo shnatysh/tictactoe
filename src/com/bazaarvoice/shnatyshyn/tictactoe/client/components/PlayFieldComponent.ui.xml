@@ -6,35 +6,35 @@
             <g:Grid width="300px" height="300px" borderWidth="1" styleName="playField">
                 <g:row>
                     <g:customCell>
-                        <g:Label styleName="playFieldCell" width="90px" ui:field="cell0"/>
+                        <g:Label styleName="playFieldCell" width="90px" height="80px" ui:field="cell0"/>
                     </g:customCell>
                     <g:customCell>
-                        <g:Label styleName="playFieldCell" width="90px" ui:field="cell1"/>
+                        <g:Label styleName="playFieldCell" width="90px" height="80px" ui:field="cell1"/>
                     </g:customCell>
                     <g:customCell>
-                        <g:Label styleName="playFieldCell" width="90px" ui:field="cell2"/>
-                    </g:customCell>
-                </g:row>
-                <g:row>
-                    <g:customCell>
-                        <g:Label styleName="playFieldCell" width="90px" ui:field="cell3"/>
-                    </g:customCell>
-                    <g:customCell>
-                        <g:Label styleName="playFieldCell" width="90px" ui:field="cell4"/>
-                    </g:customCell>
-                    <g:customCell>
-                        <g:Label styleName="playFieldCell" width="90px" ui:field="cell5"/>
+                        <g:Label styleName="playFieldCell" width="90px" height="80px" ui:field="cell2"/>
                     </g:customCell>
                 </g:row>
                 <g:row>
                     <g:customCell>
-                        <g:Label styleName="playFieldCell" width="90px" ui:field="cell6"/>
+                        <g:Label styleName="playFieldCell" width="90px" height="80px" ui:field="cell3"/>
                     </g:customCell>
                     <g:customCell>
-                        <g:Label styleName="playFieldCell" width="90px" ui:field="cell7"/>
+                        <g:Label styleName="playFieldCell" width="90px" height="80px" ui:field="cell4"/>
                     </g:customCell>
                     <g:customCell>
-                        <g:Label styleName="playFieldCell" width="90px" ui:field="cell8"/>
+                        <g:Label styleName="playFieldCell" width="90px" height="80px" ui:field="cell5"/>
+                    </g:customCell>
+                </g:row>
+                <g:row>
+                    <g:customCell>
+                        <g:Label styleName="playFieldCell" width="90px" height="80px" ui:field="cell6"/>
+                    </g:customCell>
+                    <g:customCell>
+                        <g:Label styleName="playFieldCell" width="90px" height="80px" ui:field="cell7"/>
+                    </g:customCell>
+                    <g:customCell>
+                        <g:Label styleName="playFieldCell" width="90px" height="80px" ui:field="cell8"/>
                     </g:customCell>
                 </g:row>
             </g:Grid>
