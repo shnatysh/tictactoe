@@ -1,51 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
              xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+
+    <ui:with field='res' type='com.bazaarvoice.shnatyshyn.tictactoe.client.components.resources.PlayFieldResources'/>
+
     <g:HTMLPanel>
         <div>
-            <g:Grid width="300px" height="300px" borderWidth="1" styleName="playField">
+            <g:Grid borderWidth="1" styleName="{res.css.playField}">
                 <g:row>
                     <g:customCell>
-                        <g:Label styleName="playFieldCell" width="90px" height="80px" ui:field="cell0"/>
+                        <g:Label styleName="{res.css.playFieldCell}" ui:field="cell0"/>
                     </g:customCell>
                     <g:customCell>
-                        <g:Label styleName="playFieldCell" width="90px" height="80px" ui:field="cell1"/>
+                        <g:Label styleName="{res.css.playFieldCell}" ui:field="cell1"/>
                     </g:customCell>
                     <g:customCell>
-                        <g:Label styleName="playFieldCell" width="90px" height="80px" ui:field="cell2"/>
+                        <g:Label styleName="{res.css.playFieldCell}" ui:field="cell2"/>
                     </g:customCell>
                 </g:row>
                 <g:row>
                     <g:customCell>
-                        <g:Label styleName="playFieldCell" width="90px" height="80px" ui:field="cell3"/>
+                        <g:Label styleName="{res.css.playFieldCell}" ui:field="cell3"/>
                     </g:customCell>
                     <g:customCell>
-                        <g:Label styleName="playFieldCell" width="90px" height="80px" ui:field="cell4"/>
+                        <g:Label styleName="{res.css.playFieldCell}" ui:field="cell4"/>
                     </g:customCell>
                     <g:customCell>
-                        <g:Label styleName="playFieldCell" width="90px" height="80px" ui:field="cell5"/>
+                        <g:Label styleName="{res.css.playFieldCell}" ui:field="cell5"/>
                     </g:customCell>
                 </g:row>
                 <g:row>
                     <g:customCell>
-                        <g:Label styleName="playFieldCell" width="90px" height="80px" ui:field="cell6"/>
+                        <g:Label styleName="{res.css.playFieldCell}" ui:field="cell6"/>
                     </g:customCell>
                     <g:customCell>
-                        <g:Label styleName="playFieldCell" width="90px" height="80px" ui:field="cell7"/>
+                        <g:Label styleName="{res.css.playFieldCell}" ui:field="cell7"/>
                     </g:customCell>
                     <g:customCell>
-                        <g:Label styleName="playFieldCell" width="90px" height="80px" ui:field="cell8"/>
+                        <g:Label styleName="{res.css.playFieldCell}" ui:field="cell8"/>
                     </g:customCell>
                 </g:row>
             </g:Grid>
         </div>
         <div>
-            <span class="controlButton">
+            <span class="{res.css.controlButton}">
                 <g:Button ui:field="buttonPlayX" text="Restart as X"/>
             </span>
-            <span class="controlButton">
+            <span class="{res.css.controlButton}">
                 <g:Button ui:field="buttonPlayO" text="Restart as O"/>
             </span>
+        </div>
+        <div class="{res.css.descriptionText}">
+            <ui:text from='{res.manual.getText}'/>
         </div>
     </g:HTMLPanel>
 </ui:UiBinder>

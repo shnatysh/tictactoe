@@ -1,5 +1,6 @@
 package com.bazaarvoice.shnatyshyn.tictactoe.client.components;
 
+import com.bazaarvoice.shnatyshyn.tictactoe.client.components.resources.PlayFieldResources;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
@@ -45,6 +46,8 @@ public class PlayFieldComponent extends Composite {
 
         initWidget(ourUiBinder.createAndBindUi(this));
         cells = new Label[]{cell0, cell1, cell2, cell3, cell4, cell5, cell6, cell7, cell8};
+
+        PlayFieldResources.INSTANCE.css().ensureInjected();
     }
 
     @UiHandler({"cell0", "cell1", "cell2", "cell3", "cell4", "cell5", "cell6", "cell7", "cell8"})

@@ -5,9 +5,10 @@
     <!-- Inherit the core Web Toolkit stuff.                  -->
     <inherits name='com.google.gwt.user.User'/>
 
+    <inherits name="com.google.gwt.resources.Resources" />
+
     <!-- Specify the app entry point class.                   -->
     <entry-point class='com.bazaarvoice.shnatyshyn.tictactoe.client.TicTacToe'/>
-
 
     <!-- Specify the app servlets.                   -->
     <servlet path='/tictactoeService' class='com.bazaarvoice.shnatyshyn.tictactoe.server.TicTacToeServiceImpl'/>

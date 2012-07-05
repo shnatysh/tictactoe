@@ -1,0 +1,1 @@
+Tic-tac-toe, also called noughts and crosses (in the British Commonwealth countries) and X's and O's in the Republic of Ireland, is a pencil-and-paper game for two players, X and O, who take turns marking the spaces in a 3×3 grid. The X player usually goes first. The player who succeeds in placing three respective marks in a horizontal, vertical, or diagonal row wins the game.
